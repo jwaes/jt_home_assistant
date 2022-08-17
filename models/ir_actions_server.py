@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 
 import logging
 from odoo import _, api, exceptions, fields, models, modules
@@ -26,6 +27,7 @@ class IrActionsServer(models.Model):
                         "name": sale_order.name,
                         "country": sale_order.partner_id.country_id.display_name,
                         "amount_total": sale_order.amount_total,
+                        "env": os.environ.get("ODOO_STAGE"),
                         })
                 
                 # sale_order.partner_id.country_id.display_name
